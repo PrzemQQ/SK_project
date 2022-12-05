@@ -82,5 +82,11 @@ class Clients:
     
     
 client1 = Clients('S', 26, start_date, 10)
+client2 = Clients('M', 2, start_date, 12)
+client3 = Clients('L', 3, start_date, 14)
+matrix = []
+matrix.append(np.array([client1.matrix(),client2.matrix(),client3.matrix()]))
+
+
 print(client1)
-print(client1.matrix())
+print(matrix)
