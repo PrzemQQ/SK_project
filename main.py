@@ -74,9 +74,9 @@ class Clients:
         """_summary_
 
         Returns:
-            _type_: _description_
+            _type_: matrix with client data (baggage size, hours rented, start time, end time,start hour, end hour)
         """
-        return np.array([[self.baggage_size],[self.hours_rented],[self.start_rent],[self.end_rent]])
+        return np.array([[self.baggage_size],[self.hours_rented],[self.start_rent],[self.end_rent],[self.starthour_rent],[self.endhour_rent]])
     def __repr__(self):
         return 'Client with baggage size %s, rented for %s hours, from %s to %s' % (self.baggage_size, self.hours_rented, self.start_rent, self.end_rent)
     
@@ -84,8 +84,7 @@ class Clients:
 client1 = Clients('S', 26, start_date, 10)
 client2 = Clients('M', 2, start_date, 12)
 client3 = Clients('L', 3, start_date, 14)
-matrix = []
-matrix.append(np.array([client1.matrix(),client2.matrix(),client3.matrix()]))
+matrix = np.array([client1.matrix(),client2.matrix(),client3.matrix()])
 
 
 print(client1)
