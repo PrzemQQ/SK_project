@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 from scipy.stats import uniform
 import matplotlib.pyplot as plt
+from scipy.stats import norm
 
 
 #start variables
@@ -30,16 +31,19 @@ for i in range(0,len(uniform_dist)): #loop through uniform distribution and assi
         free_boxes[3] += 1
 
 print(free_boxes)
+plt.figure()
+plt.title("free boxes")
 plt.bar(box_kinds, free_boxes) 
 plt.show()
-
 print(time_series)
 
-# generowanie rozkładu normalnego ile godzin będzie przechowwyany bagaż
+# generate hours rented
+hours_rented = np.random.normal(15,5,100) #generating normal distribution of hours rented
+hours_rented_int = [ int(hours_int) for hours_int in hours_rented ] #converting to int
 
-
-
-# gnerowanie kolejki klientó rozkład gamma
+# generate clients per day
+clients_per_day = np.random.gamma(15,1.75,100) #generating gamma distribution of clients per day
+clients_per_day_int = [ int(clients_int) for clients_int in clients_per_day ] #converting to int
 
 
 
