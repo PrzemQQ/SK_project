@@ -74,7 +74,7 @@ plt.title('Rozkład jednostajny dla rodzaju bagażu - wersja idealna')
 plt.ylabel('Prawdopodobieństwo wystąpienia danego rodzaju bagażu')
 plt.xlabel('Rodzaj bagażu')
 plt.xticks([0.1,0.3,0.5,0.7],baggage_type)
-plt.show()
+# plt.show()
 
 
 test_normal_dist_of_clients = stats.normaltest(clients_per_day_int) #test normal distribution of clients per day
@@ -90,6 +90,7 @@ plt.title("Rozkład Normalny  godzin przechowywania bagażu - wersja wygenerowan
 plt.xlabel("Godziny wynajmu")
 plt.ylabel("Prawdopodobieństwo wystąpienia danej godziny" )
 # plt.hist(clients_per_day_int, density = True, bins = 10)
+plt.plot(hours_rented_int, pdf(hours_rented_int), color = 'black')
 plt.scatter(hours_rented_int, pdf(hours_rented_int), marker = 'o', s = 25, color = 'red')
 
 plt.subplot(1,2,2) # subplot ideal distribution
@@ -102,7 +103,7 @@ plt.ylabel("Prawdopodobieństwo wystąpienia danej godziny" )
 plt.plot(x, y, color = 'black',
          linestyle = 'dashed')
 plt.scatter( x, y, marker = 'o', s = 25, color = 'red')
-plt.show()
+# plt.show()
 
 
 test_gamma_dist_of_clients_per_day = stats.normaltest(clients_per_day_int) #test gamma distribution of clients per day
@@ -122,7 +123,7 @@ plt.title("Rozkład Gamma ilości klientów - wersja idealna")
 plt.xlabel("Ilość klientów")
 plt.ylabel("Prawdopodobieństwo wystąpienia danej ilości klientów" )
 plt.plot(x,y)
-plt.show()
+# plt.show()
 
 
 
@@ -194,4 +195,4 @@ def generate_clients(clients_per_day_int,hours_rented_int):
 
 generate_clients(clients_per_day_int,hours_rented_int)
 matrix_clients = np.array([client.matrix() for client in clients]) #matrix with clients data ready to be used in the simulation
-print(len(matrix_clients))
+print(matrix_clients)
