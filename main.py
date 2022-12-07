@@ -233,10 +233,48 @@ class Cache():
             return "OK"
         else:
             return "Already occupied"
+    def info(self):
+        """_summary_ = Returns info about the cache
+        Returns:
+            _type_ = string with info about the cache
+        """
+        return "Cache size: %s, is free: %s, end hour: %s, end day: %s" % (
+            self.size, self.is_free, self.end_hour, self.end_day)
+    def info_detal(self):
+        """_summary_ = Returns info about the cache
+        Returns:
+            _type_ = string with info about the cache
+        """
+        return (self.size, self.is_free, self.end_hour, self.end_day, self.occupation_history)
 
 
 cache1 = Cache("S")
-print(cache1.occupy("2022-01-01", 12, "2022-01-02", 13))
-print(cache1.occupy("2022-01-03", 12, "2022-01-03", 13))
-print(cache1.end_hour, cache1.end_day)
-print(cache1.occupation_history)
+# print(cache1.occupy("2022-01-01", 12, "2022-01-02", 13))
+# print(cache1.occupy("2022-01-03", 12, "2022-01-03", 13))
+# print(cache1.end_hour, cache1.end_day)
+# print(cache1.occupation_history)
+
+
+#generate available caches
+
+def generate_caches(cache_sizes,quantity_of_boxes):
+    """_summary_
+
+    Args:
+        cache_sizes (_type_): list of cache sizes
+        quantity_of_boxes (_type_): quantity of all boxes
+
+    Returns:
+        _type_: list of caches
+    """
+    caches = []
+    for i in range(0,(int(quantity_of_boxes/4))): #quantity of boxes divided by 4 because we have 4 sizes of boxes and we want to have the same quantity of each size
+        for size in cache_sizes:
+            caches.append(Cache(size))
+    return caches
+
+
+generated_caches = generate_caches(box_kinds,quantity_of_boxes) #list of caches ready to simulate
+# print(generated_caches)
+print([cache.info_detal() for cache in generated_caches])
+
