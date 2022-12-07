@@ -53,25 +53,76 @@ clients_per_day_int = [ int(clients_int) for clients_int in clients_per_day ] #c
 test_uniform_dist_of_free_boxes = chisquare(free_boxes) #test uniform distribution of free boxes
 p_value_uniform_dist_of_free_boxes = test_uniform_dist_of_free_boxes[1]
 print(p_value_uniform_dist_of_free_boxes)
-plt.figure(figsize = (12, 6))     
+plt.figure(figsize = (12, 6)) 
+plt.subplot(1,2,1)   
 plt.hist(uniform_dist,density = True,bins=4)
 plt.axhline(y=uniform.pdf(uniform_dist[0]),color='r')
-plt.title('Rozkład jednostajny dla rodzaju bagażu')
+plt.title('Rozkład jednostajny dla rodzaju bagażu - wersja wygenerowana')
 plt.ylabel('Prawdopodobieństwo wystąpienia danego rodzaju bagażu')
 plt.xlabel('Rodzaj bagażu')
 plt.xticks([0.1,0.3,0.5,0.7],box_kinds)
+
+plt.subplot(1,2,2)
+baggage_type = ["S", "M", "L", "XL"]
+count = [0.20,0,25,0.30,0.25]
+from scipy.stats import uniform
+
+x = uniform.rvs(0.01,0.99,size=1000)     
+plt.hist(x,density = True,bins=4)
+plt.axhline(y=uniform.pdf(x[0]),color='r')
+plt.title('Rozkład jednostajny dla rodzaju bagażu - wersja idealna')
+plt.ylabel('Prawdopodobieństwo wystąpienia danego rodzaju bagażu')
+plt.xlabel('Rodzaj bagażu')
+plt.xticks([0.1,0.3,0.5,0.7],baggage_type)
 plt.show()
+
 
 test_normal_dist_of_clients = stats.normaltest(clients_per_day_int) #test normal distribution of clients per day
 print(test_normal_dist_of_clients)
 plt.figure(figsize = (12, 6))
-plt.title("Rozkład Normalny ilości klientów")
-plt.xlabel("Ilość klientów")
-plt.ylabel("Prawdopodobieństwo wystąpienia danej ilości klientów" )
-plt.hist(clients_per_day_int, density = True, bins = 10)
+def pdf(x):
+    mean = np.mean(x)
+    std = np.std(x)
+    y_out = 1/(std * np.sqrt(2 * np.pi)) * np.exp( - (x - mean)**2 / (2 * std**2))
+    return y_out
+plt.subplot(1,2,1)
+plt.title("Rozkład Normalny  godzin przechowywania bagażu - wersja wygenerowana")
+plt.xlabel("Godziny wynajmu")
+plt.ylabel("Prawdopodobieństwo wystąpienia danej godziny" )
+# plt.hist(clients_per_day_int, density = True, bins = 10)
+plt.scatter(hours_rented_int, pdf(hours_rented_int), marker = 'o', s = 25, color = 'red')
 
+plt.subplot(1,2,2) # subplot ideal distribution
+x = np.arange(0,30,1)
+y = pdf(x)
+plt.style.use('seaborn')
+plt.title("Rozkład Gaussa godzin przechowywania bagażu - wersja idealna")
+plt.xlabel("Godziny wynajmu")
+plt.ylabel("Prawdopodobieństwo wystąpienia danej godziny" )
+plt.plot(x, y, color = 'black',
+         linestyle = 'dashed')
+plt.scatter( x, y, marker = 'o', s = 25, color = 'red')
 plt.show()
 
+
+test_gamma_dist_of_clients_per_day = stats.normaltest(clients_per_day_int) #test gamma distribution of clients per day
+print(test_gamma_dist_of_clients_per_day)
+plt.figure(figsize = (12, 6))
+plt.subplot(1,2,1)
+plt.title("Rozkład Gamma ilości klientów - wersja wygenerowana")
+plt.xlabel("Ilość klientów")
+plt.ylabel("Prawdopodobieństwo wystąpienia danej ilości klientów" )
+plt.scatter(clients_per_day_int, pdf(clients_per_day_int), marker = 'o', s = 25, color = 'red')
+
+plt.subplot(1,2,2) # subplot ideal distribution
+x = np.linspace(0,60,1000)
+y = stats.gamma.pdf(x, a=20, scale=1)
+
+plt.title("Rozkład Gamma ilości klientów - wersja idealna")
+plt.xlabel("Ilość klientów")
+plt.ylabel("Prawdopodobieństwo wystąpienia danej ilości klientów" )
+plt.plot(x,y)
+plt.show()
 
 
 
