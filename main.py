@@ -9,6 +9,9 @@ import matplotlib.pyplot as plt
 from scipy.stats import norm
 from scipy.stats import chisquare
 from scipy import stats
+import statsmodels.api as sm
+import pylab as py
+  
 
 
 #start variables
@@ -283,3 +286,17 @@ print([cache.info_detal() for cache in generated_caches])
 #data ready to simulate
 matrix_clients
 generated_caches
+
+# może ci będzie pomocne do tworzenia symulacji, stworzyłem  osobne mizenne zebys nie musial bawic się w macierz, masz tez to dla ułatweinia w df, wtedy jest łatwiej manipulować danymi,
+clients_baggage_size = (matrix_clients[:,0]).flatten()
+clients_hours_rented = matrix_clients[:,1].flatten()
+clients_start_time = matrix_clients[:,2].flatten()
+clients_end_time = matrix_clients[:,3].flatten()
+clients_start_hour = matrix_clients[:,4].flatten()
+clients_end_hour = matrix_clients[:,5].flatten()
+df_clients = pd.DataFrame({'baggage_size':clients_baggage_size,'hours_rented':clients_hours_rented,'start_time':clients_start_time,'end_time':clients_end_time,'start_hour':clients_start_hour,'end_hour':clients_end_hour})
+df_clients = df_clients.astype({'baggage_size': 'category','hours_rented': 'int64','start_time': 'datetime64[ns]','end_time': 'datetime64[ns]','start_hour': 'int64','end_hour': 'int64'})
+df_only_numeric = df_clients.select_dtypes(include=['int64','float64'])
+
+print(df_clients.head(20))
+print(df_clients.describe())
