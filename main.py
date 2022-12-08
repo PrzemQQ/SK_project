@@ -278,3 +278,8 @@ generated_caches = generate_caches(box_kinds,quantity_of_boxes) #list of caches 
 # print(generated_caches)
 print([cache.info_detal() for cache in generated_caches])
 
+
+
+#data ready to simulate
+matrix_clients
+generated_caches
