@@ -41,6 +41,8 @@ class Cache():
 
 cache1 = Cache("S")
 print(cache1.occupy("2022-01-01", 12, "2022-01-02", 13))
-print(cache1.occupy("2022-01-03", 12, "2022-01-03", 13))
+# if cache1.occupy("2022-01-03", 12, "2022-01-03", 13) == "OK":
+#     print(1)
+
 print(cache1.end_hour, cache1.end_day)
 print(cache1.occupation_history)
