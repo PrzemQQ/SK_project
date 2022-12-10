@@ -11,7 +11,7 @@ from scipy.stats import chisquare
 from scipy import stats
 import statsmodels.api as sm
 import pylab as py
-from random import randrange
+from random import shuffle
 
 # start variables
 start_date = '2022-01-01'
@@ -415,12 +415,16 @@ def random_profit(cache_info, clients_info, caches_costs):
         # Occupying cache based on luggage size and adding cost of that to profit
         match size:
             case 'XL':
-                for cache_number in range(randrange(75, 100)):
+                numbers = list(range(75, 100))
+                shuffle(numbers)
+                for cache_number in numbers:
                     if cache_info[cache_number].occupy(start_time, start_hour, end_time, end_hour) == 'OK':
                         profit += caches_costs[3]
                         break
             case 'L':
-                for cache_number in range(randrange(50, 100)):
+                numbers = list(range(50, 100))
+                shuffle(numbers)
+                for cache_number in numbers:
                     if cache_info[cache_number].occupy(start_time, start_hour, end_time, end_hour) == 'OK':
                         if cache_number >= 75:
                             profit += caches_costs[3]
@@ -428,7 +432,9 @@ def random_profit(cache_info, clients_info, caches_costs):
                             profit += caches_costs[2]
                         break
             case 'M':
-                for cache_number in range(randrange(25, 100)):
+                numbers = list(range(25, 100))
+                shuffle(numbers)
+                for cache_number in numbers:
                     if cache_info[cache_number].occupy(start_time, start_hour, end_time, end_hour) == 'OK':
                         if cache_number >= 75:
                             profit += caches_costs[3]
@@ -438,7 +444,9 @@ def random_profit(cache_info, clients_info, caches_costs):
                             profit += caches_costs[1]
                         break
             case 'S':
-                for cache_number in range(randrange(0, 100)):
+                numbers = list(range(0, 100))
+                shuffle(numbers)
+                for cache_number in numbers:
                     if cache_info[cache_number].occupy(start_time, start_hour, end_time, end_hour) == 'OK':
                         if cache_number >= 75:
                             profit += caches_costs[3]
