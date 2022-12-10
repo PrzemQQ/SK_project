@@ -329,7 +329,15 @@ cache_fine = 60
 
 
 def knapsack_problem(cache_info, clients_info, caches_costs):
+    """_summary_ = returns calculated profit with knapsack method
+            Args:
+                cache_info (_type_): list of generated caches
+                clients_info (_type_): dataframe with clients' info
+                caches_costs (_type_): list of cost for renting cache sort by size
+            """
+
     profit = 0
+
     for i in range(len(clients_info)):
         size = clients_info.iloc[i]['baggage_size']
         start_time = clients_info.iloc[i]['start_time']
@@ -337,8 +345,12 @@ def knapsack_problem(cache_info, clients_info, caches_costs):
         start_hour = clients_info.iloc[i]['start_hour']
         end_hour = clients_info.iloc[i]['end_hour']
         hours = clients_info.iloc[i]['hours_rented']
+
+        # Adding fine to profit if cache is rented for more than 24 hours
         if hours > 24:
             profit += cache_fine
+
+        # Occupying cache based on luggage size and adding cost of that to profit
         match size:
             case 'XL':
                 for cache_number in range(75, 100):
@@ -379,7 +391,15 @@ def knapsack_problem(cache_info, clients_info, caches_costs):
 
 
 def random_profit(cache_info, clients_info, caches_costs):
+    """_summary_ = returns calculated profit with random method
+            Args:
+                cache_info (_type_): list of generated caches
+                clients_info (_type_): dataframe with clients' info
+                caches_costs (_type_): list of cost for renting cache sort by size
+            """
+
     profit = 0
+
     for i in range(len(clients_info)):
         size = clients_info.iloc[i]['baggage_size']
         start_time = clients_info.iloc[i]['start_time']
@@ -387,8 +407,12 @@ def random_profit(cache_info, clients_info, caches_costs):
         start_hour = clients_info.iloc[i]['start_hour']
         end_hour = clients_info.iloc[i]['end_hour']
         hours = clients_info.iloc[i]['hours_rented']
+
+        # Adding fine to profit if cache is rented for more than 24 hours
         if hours > 24:
             profit += cache_fine
+
+        # Occupying cache based on luggage size and adding cost of that to profit
         match size:
             case 'XL':
                 for cache_number in range(randrange(75, 100)):
