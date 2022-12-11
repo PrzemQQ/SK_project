@@ -302,7 +302,6 @@ print([cache.info_detal() for cache in generated_caches])
 matrix_clients
 generated_caches
 
-# może ci będzie pomocne do tworzenia symulacji, stworzyłem  osobne mizenne zebys nie musial bawic się w macierz, masz tez to dla ułatweinia w df, wtedy jest łatwiej manipulować danymi,
 clients_baggage_size = (matrix_clients[:, 0]).flatten()
 clients_hours_rented = matrix_clients[:, 1].flatten()
 clients_start_time = matrix_clients[:, 2].flatten()
