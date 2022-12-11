@@ -13,7 +13,9 @@ Abstract
 ## 🟡 Documentation 🟡
 Documentation in polish below:
 
-![alt text](https://github.com/PrzemQQ/SK_project/blob/main/1.png)
-![alt text](https://github.com/PrzemQQ/SK_project/blob/main/2.png)
-![alt text](https://github.com/PrzemQQ/SK_project/blob/main/3.png)
-![alt text](https://github.com/PrzemQQ/SK_project/blob/main/4.png)
+![alt text](https://github.com/PrzemQQ/SK_project/blob/main/docs/1.png)
+![alt text](https://github.com/PrzemQQ/SK_project/blob/main/docs/2.png)
+![alt text](https://github.com/PrzemQQ/SK_project/blob/main/docs/3.png)
+![alt text](https://github.com/PrzemQQ/SK_project/blob/main/docs/4.png)
+![alt text](https://github.com/PrzemQQ/SK_project/blob/main/docs/5.png)
+![alt text](https://github.com/PrzemQQ/SK_project/blob/main/docs/6.png)
